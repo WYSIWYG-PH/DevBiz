@@ -2,6 +2,7 @@
     <Hero />
     <Services />
     <Team />
+    <Testimony />
     <Footer />
 </template>
 
