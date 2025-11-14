@@ -25,7 +25,14 @@ const projects = [
         image: "/images/dccakes.png",
         category: "Web Development",
         link: "https://dc-cakes.vercel.app/"
+    },
+    {
+        title: "Trabahanap",
+        description: "Trabahanap is a job-matching app built for quick, one-day tasks. ",
+        image: "/images/trabahanap.png",
+        category: "Mobile App Development",
     }
+
 ];
 
 export default projects;

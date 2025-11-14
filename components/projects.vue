@@ -31,12 +31,6 @@
                     </div>
                 </div>
             </div>
-            <div class="mt-12 text-center">
-                <button
-                    class="px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-opacity-90 transition duration-200">
-                    View All Projects
-                </button>
-            </div>
         </div>
     </section>
 </template>
