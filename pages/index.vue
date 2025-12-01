@@ -1,6 +1,9 @@
 <template>
     <Navbar />
-    <Hero />
+    
+    <div id="hero">
+        <Hero />
+    </div>
 
     <div id="services">
         <Services />
@@ -16,6 +19,10 @@
 
     <div id="team">
         <Team />
+    </div>
+
+    <div id="process">
+        <Process />
     </div>
 
     <Footer />
