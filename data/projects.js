@@ -8,7 +8,7 @@ const projects = [
     {
         title: "Uni Lux",
         description: "A promotional landing page for a luxury bag business based in Metro Manila",
-        image: "/images/unilux.png",
+        image: "/images/uniLux.png",
         category: "Web Development",
         link: "https://unilux-nine.vercel.app/"
     },
@@ -22,7 +22,7 @@ const projects = [
     {
         title: "DC Cakes",
         description: "A website for a cake shop that allows customers to browse the menu.",
-        image: "/images/dccakes.png",
+        image: "/images/dcCakes.png",
         category: "Web Development",
         link: "https://dc-cakes.vercel.app/"
     },
