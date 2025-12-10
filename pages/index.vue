@@ -1,6 +1,7 @@
 <template>
+    <title>DevBiz</title>
     <Navbar />
-    
+
     <div id="hero">
         <Hero />
     </div>
