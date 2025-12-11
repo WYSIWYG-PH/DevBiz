@@ -23,33 +23,66 @@
                 </p>
             </div>
 
+            <!-- Carousel Container -->
+            <div class="relative">
+                <!-- Navigation Arrows (only show if more than 3 testimonials) -->
+                <button v-if="testimonials.length > 3" @click="previousSlide"
+                    class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-gray-800/80 hover:bg-gray-700 text-green-500 rounded-full p-3 shadow-lg border border-green-500/50 transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+                    :disabled="currentSlide === 0">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
 
-            <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <div v-for="(testimonial, index) in testimonials" :key="testimonial.id"
-                    class="relative rounded-2xl bg-gray-800/50 p-6 shadow-lg border border-green-500 transition-all duration-300 hover:shadow-lg hover:shadow-green-500/30"
-                    v-motion :initial="{ opacity: 0, scale: 0.9 }" :visible="{
-                        opacity: 1,
-                        scale: 1,
-                        transition: {
-                            delay: index * 200,
-                            duration: 600,
-                            ease: 'easeOut'
-                        }
-                    }">
-                    <!-- Quote icon -->
+                <button v-if="testimonials.length > 3" @click="nextSlide"
+                    class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-gray-800/80 hover:bg-gray-700 text-green-500 rounded-full p-3 shadow-lg border border-green-500/50 transition-all duration-300 hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed"
+                    :disabled="currentSlide >= totalSlides - 1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
 
-                    <!-- Quote text -->
-                    <p class="text-base italic text-gray-300 mb-8">"{{ testimonial.quote }}"</p>
+                <!-- Testimonials Grid/Carousel -->
+                <div class="overflow-hidden">
+                    <div class="flex transition-transform duration-500 ease-in-out"
+                        :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
+                        <div v-for="(group, groupIndex) in testimonialGroups" :key="groupIndex"
+                            class="w-full flex-shrink-0 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                            <div v-for="testimonial in group" :key="testimonial.id"
+                                class="relative rounded-2xl bg-gray-800/50 p-6 shadow-lg border border-green-500 transition-all duration-300 hover:shadow-lg hover:shadow-green-500/30 h-full"
+                                v-motion :initial="{ opacity: 0, scale: 0.9 }" :visible="{
+                                    opacity: 1,
+                                    scale: 1,
+                                    transition: {
+                                        duration: 600,
+                                        ease: 'easeOut'
+                                    }
+                                }">
+                                <!-- Quote text -->
+                                <p class="text-base italic text-gray-300 mb-8">"{{ testimonial.quote }}"</p>
 
-                    <!-- Author info - Horizontal layout -->
-                    <div class="flex items-center gap-x-4 mt-6 pt-6 border-t border-green-500/30">
-                        <img class="size-12 rounded-full object-cover ring-2 ring-green-500/50" :src="testimonial.image"
-                            :alt="testimonial.name">
-                        <div>
-                            <h3 class="text-base font-semibold tracking-tight text-white">{{ testimonial.name }}</h3>
-                            <p class="text-sm font-semibold text-primary">{{ testimonial.company }}</p>
+                                <!-- Author info - Horizontal layout -->
+                                <div class="flex items-center gap-x-4 mt-6 pt-6 border-t border-green-500/30">
+                                    <img class="size-12 rounded-full object-cover ring-2 ring-green-500/50" :src="testimonial.image"
+                                        :alt="testimonial.name">
+                                    <div>
+                                        <h3 class="text-base font-semibold tracking-tight text-white">{{ testimonial.name }}</h3>
+                                        <p class="text-sm font-semibold text-primary">{{ testimonial.company }}</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- Carousel Indicators (only show if more than 3 testimonials) -->
+                <div v-if="testimonials.length > 3" class="flex justify-center gap-2 mt-8">
+                    <button v-for="(slide, index) in totalSlides" :key="index" @click="goToSlide(index)"
+                        class="h-2 rounded-full transition-all duration-300"
+                        :class="currentSlide === index ? 'w-8 bg-green-500' : 'w-2 bg-gray-600 hover:bg-gray-500'">
+                    </button>
                 </div>
             </div>
         </div>
@@ -57,5 +90,40 @@
 </template>
 
 <script setup>
+import { ref, computed } from 'vue';
 import testimonials from '~/data/testimony';
+
+const currentSlide = ref(0);
+const cardsPerView = 3;
+
+// Calculate total number of slides
+const totalSlides = computed(() => {
+    if (testimonials.length <= cardsPerView) return 1;
+    return Math.ceil(testimonials.length / cardsPerView);
+});
+
+// Group testimonials into sets of 3
+const testimonialGroups = computed(() => {
+    const groups = [];
+    for (let i = 0; i < testimonials.length; i += cardsPerView) {
+        groups.push(testimonials.slice(i, i + cardsPerView));
+    }
+    return groups;
+});
+
+const nextSlide = () => {
+    if (currentSlide.value < totalSlides.value - 1) {
+        currentSlide.value++;
+    }
+};
+
+const previousSlide = () => {
+    if (currentSlide.value > 0) {
+        currentSlide.value--;
+    }
+};
+
+const goToSlide = (index) => {
+    currentSlide.value = index;
+};
 </script>

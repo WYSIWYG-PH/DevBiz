@@ -18,9 +18,17 @@ const testimonials = [
   {
     id: 3,
     quote:
-      "He made me a great app and website that really helped my business grow. He turned my ideas into a smooth and easy-to-use system. Because of his work, my business now runs better and faster. I’m very happy with the results and thankful for his skill and support. I highly recommend him to anyone who needs a good developer",
+      "They made me a great app and website that really helped my business grow. They turned my ideas into a smooth and easy-to-use system. Because of their work, my business now runs better and faster. I’m very happy with the results and thankful for their skill and support. I highly recommend them to anyone who needs a good developer",
     name: "Decee Grace Casipe",
     company: "Owner, DC Cakes",
+    image: "/images/dccakes_logo.jpg",
+  },
+  {
+    id: 4,
+    quote:
+      "They created an amazing app and website for my business. Their work helped turn my business into a well-organized system that saves time and makes everything easier. I’m very satisfied with the results, and I appreciate their professionalism and dedication. I highly recommend their services to anyone who wants to improve their business.",
+    name: "Nicole",
+    company: "Co Owner, DC Cakes",
     image: "/images/dccakes_logo.jpg",
   },
 ];
