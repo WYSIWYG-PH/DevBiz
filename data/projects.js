@@ -1,5 +1,12 @@
 const projects = [
     {
+        title: "Xtensionshub",
+        description: "Xtensions Hub is a multi-location hair salon business offering services and products online. It operates across the Philippines and Dubai, providing hair extensions, eyelash services, nail treatments, toupees, and salon services.",
+        image: "/images/xtensionshub.png",
+        category: "Web Development",
+        link: "https://xtensionshub.com/"
+    },
+    {
         title: "E-Voting System",
         description: "An E-Voting System is a digital platform that allows voters to cast their votes electronically instead of using traditional paper ballots. It ensures a secure, transparent, and efficient voting process.",
         image: "/images/evotingimg.png",
