@@ -90,7 +90,7 @@ const goToSlide = (index) => {
 const startAutoSlide = () => {
     autoSlideInterval = setInterval(() => {
         nextSlide();
-    }, 5000); // Auto-slide every 5 seconds
+    }, 10000); 
 };
 
 const stopAutoSlide = () => {
