@@ -10,10 +10,8 @@
             <div class="relative">
                 <!-- Carousel Container -->
                 <div class="overflow-hidden">
-                    <div class="flex transition-transform duration-500 ease-out"
-                        :style="{ transform: `translateX(-${currentIndex * 100}%)` }" @mouseenter="pauseAutoSlide"
-                        @mouseleave="resumeAutoSlide">
-                        <div v-for="(project, index) in projects" :key="index" class="w-full flex-shrink-0 px-2">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div v-for="(project, index) in projects" :key="index" class="w-full px-2">
                             <div class="bg-slate-900 rounded-lg overflow-hidden max-w-2xl mx-auto">
                                 <div class="h-64 overflow-hidden">
                                     <img :src="project.image" :alt="project.title" class="w-full h-full object-cover">
