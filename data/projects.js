@@ -1,6 +1,6 @@
 const projects = [
     {
-        title: "Xtensionshub",
+        title: "Xtensions Hub",
         description: "Xtensions Hub is a multi-location hair salon business offering services and products online. It operates across the Philippines and Dubai, providing hair extensions, eyelash services, nail treatments, toupees, and salon services.",
         image: "/images/xtensionshub.png",
         category: "Web Development",
