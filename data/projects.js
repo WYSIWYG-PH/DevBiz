@@ -41,7 +41,7 @@ const projects = [
     },
     {
         title: "Chade Inanag",
-        description: "A promotional site for a Pinoy inihaw and unli-rice food business — masarap, barato, sulit kaayo.",
+        description: "A promotional site for a Pinoy inihaw and unli-rice food business. Masarap, barato, sulit kaayo.",
         image: "/images/projects/chade-inanag.jpg",
         category: "Web Development",
     },
