@@ -47,9 +47,15 @@
                     }
                 }">
                     <button
-                        class="bg-primary text-gray-800 px-6 py-3 rounded-md font-medium transition duration-300 hover:bg-primary-400 hover:shadow-[0_0_15px_4px_rgba(0,220,130,0.7)]"
+                        class="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-emerald-400 px-7 py-3.5 font-semibold text-gray-900 shadow-lg shadow-primary/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_25px_4px_rgba(0,220,130,0.55)] active:translate-y-0"
                         onclick="window.location.href='https://www.facebook.com/profile.php?id=61586726650291'">
+                        <Icon name="mdi:facebook" class="size-5" />
                         Visit Us
+                    </button>
+                    <button @click="openContact = true"
+                        class="group inline-flex items-center justify-center gap-2 rounded-full border-2 border-primary/70 px-7 py-3.5 font-semibold text-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary hover:text-gray-900 active:translate-y-0">
+                        <Icon name="mdi:email-outline" class="size-5" />
+                        Contact Us
                     </button>
                 </div>
             </div>
@@ -94,9 +100,15 @@
                     }
                 }">
                     <button
-                        class="bg-primary text-gray-800 px-6 py-3 rounded-md font-medium transition duration-300 hover:bg-primary-400 hover:shadow-[0_0_15px_4px_rgba(0,220,130,0.7)]"
+                        class="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-emerald-400 px-7 py-3.5 font-semibold text-gray-900 shadow-lg shadow-primary/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_25px_4px_rgba(0,220,130,0.55)] active:translate-y-0"
                         onclick="window.location.href='https://www.facebook.com/profile.php?id=61586726650291'">
+                        <Icon name="mdi:facebook" class="size-5" />
                         Visit Us
+                    </button>
+                    <button @click="openContact = true"
+                        class="group inline-flex items-center justify-center gap-2 rounded-full border-2 border-primary/70 px-7 py-3.5 font-semibold text-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary hover:text-gray-900 active:translate-y-0">
+                        <Icon name="mdi:email-outline" class="size-5" />
+                        Contact Us
                     </button>
                 </div>
             </div>
@@ -114,4 +126,75 @@
             </div>
         </div>
     </div>
+    <!-- Contact Modal -->
+    <transition enter-active-class="transition duration-300 ease-out" enter-from-class="opacity-0 scale-95"
+        enter-to-class="opacity-100 scale-100" leave-active-class="transition duration-200 ease-in"
+        leave-from-class="opacity-100 scale-100" leave-to-class="opacity-0 scale-95">
+        <div v-if="openContact" class="fixed inset-0 z-50 flex items-center justify-center">
+            <!-- Backdrop -->
+            <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" @click="openContact = false"></div>
+
+            <!-- Modal Card -->
+            <div class="relative z-10 w-full max-w-md mx-4 rounded-xl
+             bg-slate-900/90 backdrop-blur-md border border-white/10
+             shadow-xl p-6">
+                <!-- Close -->
+                <button @click="openContact = false"
+                    class="absolute top-3 right-3 text-gray-400 hover:text-white transition">
+                    ✕
+                </button>
+
+                <h2 class="text-2xl font-semibold text-white mb-6">
+                    Contact Us
+                </h2>
+
+                <div class="space-y-5 text-gray-300">
+                    <!-- Email -->
+                    <div class="flex items-center gap-4">
+                        <Icon name="mdi:email-outline" class="size-6 text-primary" />
+                        <a href="mailto:balsthedeveloper@gmail.com" class="hover:text-primary transition">
+                            balsthedeveloper@gmail.com
+                        </a>
+                    </div>
+
+                    <!-- Facebook -->
+                    <div class="flex items-center gap-4">
+                        <Icon name="mdi:facebook" class="size-6 text-primary" />
+                        <a href="https://www.facebook.com/profile.php?id=61586726650291" target="_blank"
+                            class="hover:text-primary transition">
+                            DevBiz
+                        </a>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="flex items-center gap-4">
+                        <Icon name="mdi:phone-outline" class="size-6 text-primary" />
+                        <span class="hover:text-primary transition">
+                            0975 592 9290
+                        </span>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex justify-end">
+                    <button @click="openContact = false" class="px-4 py-2 bg-primary text-gray-900 rounded-md
+                 hover:bg-primary-400 transition">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </transition>
 </template>
+<script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
+
+const openContact = ref(false)
+
+// Close on ESC
+const handleKey = (e) => {
+    if (e.key === 'Escape') openContact.value = false
+}
+
+onMounted(() => window.addEventListener('keydown', handleKey))
+onUnmounted(() => window.removeEventListener('keydown', handleKey))
+</script>

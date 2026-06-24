@@ -1,5 +1,5 @@
 <template>
-    <section class="bg-slate-950 py-16 border-t border-b border-slate-800">
+    <section class="section-texture bg-slate-950 py-16 border-t border-b border-slate-800">
         <div class="container mx-auto px-4">
             <!-- Header -->
             <div class="mb-16 text-center">

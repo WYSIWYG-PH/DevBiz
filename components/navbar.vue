@@ -24,19 +24,34 @@
                     class="logo-text text-xl font-bold bg-gradient-to-r from-[#00DC82] to-emerald-400 bg-clip-text text-transparent">
                     DevBiz
                 </div>
-                <button @click="toggleMenu" class="focus:outline-none">
-                    <Icon :name="isOpen ? 'ph-x' : 'ph-list'" class="size-6 text-white" />
+                <button @click="toggleMenu" aria-label="Toggle menu" :aria-expanded="isOpen"
+                    class="flex items-center justify-center size-10 rounded-lg bg-slate-900/80 border border-slate-800 text-white transition-all duration-200 hover:border-primary/50 hover:text-primary active:scale-95">
+                    <Icon :name="isOpen ? 'ph-x-bold' : 'ph-list-bold'" class="size-5" />
                 </button>
             </div>
 
             <!-- Mobile Dropdown Menu -->
-            <transition name="fade">
+            <transition name="slide-fade">
                 <div v-if="isOpen"
-                    class="mt-4 md:hidden flex flex-col gap-4 pb-4 rounded-xl px-4 py-4 bg-slate-900/90 backdrop-blur-md border border-slate-800">
-                    <button @click="handleMobileClick('services')" class="nav-item text-left">Services</button>
-                    <button @click="handleMobileClick('projects')" class="nav-item text-left">Projects</button>
-                    <button @click="handleMobileClick('testimonials')" class="nav-item text-left">Testimonials</button>
-                    <button @click="handleMobileClick('team')" class="nav-item text-left">Our Team</button>
+                    class="mt-3 md:hidden overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/95 backdrop-blur-md shadow-xl shadow-black/40">
+                    <nav class="flex flex-col p-2">
+                        <button @click="handleMobileClick('services')" class="mobile-link">
+                            <span>Services</span>
+                            <Icon name="ph:caret-right" class="size-4 text-primary/70" />
+                        </button>
+                        <button @click="handleMobileClick('projects')" class="mobile-link">
+                            <span>Projects</span>
+                            <Icon name="ph:caret-right" class="size-4 text-primary/70" />
+                        </button>
+                        <button @click="handleMobileClick('testimonials')" class="mobile-link">
+                            <span>Testimonials</span>
+                            <Icon name="ph:caret-right" class="size-4 text-primary/70" />
+                        </button>
+                        <button @click="handleMobileClick('team')" class="mobile-link">
+                            <span>Our Team</span>
+                            <Icon name="ph:caret-right" class="size-4 text-primary/70" />
+                        </button>
+                    </nav>
                 </div>
             </transition>
 
@@ -93,14 +108,20 @@ const handleMobileClick = (id) => {
 }
 
 
-/* Smooth dropdown fade */
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity .25s ease;
+/* Mobile menu rows */
+.mobile-link {
+    @apply flex items-center justify-between rounded-xl px-4 py-3 text-base font-medium text-gray-200 transition-colors duration-200 hover:bg-slate-800 hover:text-white active:bg-slate-800/70;
 }
 
-.fade-enter-from,
-.fade-leave-to {
+/* Smooth dropdown slide + fade */
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+    transition: opacity .25s ease, transform .25s ease;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
     opacity: 0;
+    transform: translateY(-8px);
 }
 </style>

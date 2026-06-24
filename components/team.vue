@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-gray-900 py-24 sm:py-32">
+    <div class="section-texture bg-gray-900 py-24 sm:py-32">
         <div class="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 xl:grid-cols-3">
             <div class="max-w-xl" v-motion :initial="{ opacity: 0, y: 30 }"
                 :visible="{ opacity: 1, y: 0, transition: { duration: 800 } }">

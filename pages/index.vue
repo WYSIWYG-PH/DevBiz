@@ -6,6 +6,10 @@
         <Hero />
     </div>
 
+    <div id="trusted">
+        <TrustedBy />
+    </div>
+
     <div id="services">
         <Services />
     </div>

@@ -7,3 +7,14 @@
 body {
     font-family: "Montserrat", sans-serif;
 }
+
+/* Subtle background texture for sections.
+   Layers a faint dot grid + a soft green glow over the section's bg color.
+   `background-image` draws over the Tailwind bg-* color, so the base color shows through. */
+.section-texture {
+    background-image:
+        radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.045) 1px, transparent 0),
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 220, 130, 0.06), transparent 70%);
+    background-size: 22px 22px, 100% 100%;
+    background-position: 0 0, center top;
+}
