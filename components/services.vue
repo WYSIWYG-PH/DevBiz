@@ -11,7 +11,7 @@
                     succeed.</p>
             </div>
             <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-                <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
+                <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:max-w-none lg:grid-cols-4">
                     <div v-for="(service, index) in services" :key="index" class="flex flex-col" v-motion
                         :initial="{ opacity: 0, y: 50 }" :visible="{
                             opacity: 1,

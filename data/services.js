@@ -13,6 +13,11 @@ const services = [
       icon: 'ph-code',
       title: 'Software Solutions',
       description: 'Robust and scalable software solutions to enhance business operations.'
+    },
+    {
+      icon: 'ph-broadcast',
+      title: 'IoT Development',
+      description: 'Connected device solutions that collect data, automate processes, and bring smart systems to life.'
     }
   ];
 
