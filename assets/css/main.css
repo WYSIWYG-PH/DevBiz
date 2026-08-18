@@ -8,6 +8,27 @@ body {
     font-family: "Montserrat", sans-serif;
 }
 
+/* --- Lenis smooth scroll ---
+   Lenis drives the scroll position itself, so native scroll behaviour and
+   scroll-anchoring have to be turned off or they fight the animation. */
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+/* Elements that should keep native scrolling (modals, code blocks, ...) */
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
 /* Subtle background texture for sections.
    Layers a faint dot grid + a soft green glow over the section's bg color.
    `background-image` draws over the Tailwind bg-* color, so the base color shows through. */
