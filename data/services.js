@@ -4,7 +4,7 @@ const services = [
     icon: 'ph-desktop',
     title: 'Web Development',
     tag: 'Flagship',
-    description: 'Custom websites built with the latest technologies to ensure performance and scalability.'
+    description: 'Custom websites built with the latest technologies to ensure performance and scalability.s'
   },
   {
     icon: 'ph-android-logo',
