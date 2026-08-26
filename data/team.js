@@ -14,7 +14,7 @@ const teamMembers = [
       "Erman has extensive freelance experience, delivering a wide range of full-stack and mobile development projects for clients across different industries. He also leads tech workshops, sharing his knowledge in modern development practices and helping aspiring developers strengthen their skills.",
   },
   {
-    name: "Jasmine",
+    name: "Jasmine Kate Patiño",
     position: "IoT Developer / Mentor",
     image: "/images/team/jasmine.jpg",
     description:
