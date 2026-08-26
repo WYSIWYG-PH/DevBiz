@@ -1,15 +1,16 @@
 <template>
     <div class="section-texture bg-gray-900 py-24 sm:py-32">
-        <div class="mx-auto grid max-w-7xl gap-20 px-6 lg:px-8 xl:grid-cols-3">
-            <div class="max-w-xl" v-motion :initial="{ opacity: 0, y: 30 }"
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl text-center" v-motion :initial="{ opacity: 0, y: 30 }"
                 :visible="{ opacity: 1, y: 0, transition: { duration: 800 } }">
-                <h2 class="text-3xl font-semibold tracking-tight text-pretty text-white sm:text-4xl">Meet our team</h2>
+                <h2 class="text-3xl font-semibold tracking-tight text-pretty text-white sm:text-4xl">Our Team</h2>
                 <p class="mt-6 text-lg/8 text-gray-300">We're a dynamic group of individuals who are passionate about
                     what
                     we
                     do and dedicated to delivering the best results for our clients.</p>
             </div>
-            <ul role="list" class="grid gap-8 sm:grid-cols-2 xl:col-span-2">
+
+            <ul role="list" class="mx-auto mt-16 grid max-w-2xl gap-8 sm:grid-cols-2 lg:max-w-none lg:grid-cols-3">
                 <li v-for="(member, index) in teamMembers" :key="index" v-motion :initial="{ opacity: 0, y: 30 }"
                     :visible="{
                         opacity: 1,
@@ -33,7 +34,6 @@
                     </p>
                 </li>
             </ul>
-
         </div>
     </div>
 </template>

@@ -13,6 +13,13 @@ const teamMembers = [
     description:
       "Erman has extensive freelance experience, delivering a wide range of full-stack and mobile development projects for clients across different industries. He also leads tech workshops, sharing his knowledge in modern development practices and helping aspiring developers strengthen their skills.",
   },
+  {
+    name: "Jasmine",
+    position: "IoT Developer / Mentor",
+    image: "/images/team/jasmine.jpg",
+    description:
+      "Jasmine has a strong background in developing IoT projects and bringing innovative ideas to life. As a freelance developer, she works with electronics, circuit wiring, and firmware programming while sharing her knowledge through teaching, mentoring, and webinars. Her passion and experience inspire students to explore technology, develop their skills, and create meaningful projects.",
+  },
 ];
 
 export default teamMembers;
