@@ -9,7 +9,7 @@ const teamMembers = [
   },
   {
     name: "Erman Faminiano",
-    position: "Co Founder/Full Stack Web/Mobile Developer/Game Developer",
+    position: "Co Founder/Full Stack Developer",
     icon: "ph:device-mobile",
     image: "/images/team/founder_2.jpg",
     description:
