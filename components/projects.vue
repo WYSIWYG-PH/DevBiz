@@ -2,7 +2,14 @@
     <section class="section-texture bg-slate-950 py-16 border-t border-b border-primary">
         <div class="container mx-auto px-4">
             <div class="mb-12 text-center">
-                <h2 class="text-3xl font-bold text-white mb-4">Our Projects</h2>
+                <!-- Same heading treatment as "Our trusted Clients" in testimony.vue -->
+                <h2 class="mb-4 flex flex-wrap items-center justify-center gap-x-3 text-3xl sm:text-4xl font-bold tracking-tight text-white">
+                    Our
+                    <span
+                        class="inline-block rounded-xl bg-gradient-to-r from-primary to-emerald-400 px-3 py-1 text-gray-900">
+                        Projects
+                    </span>
+                </h2>
                 <p class="text-gray-400 max-w-2xl mx-auto">Explore our portfolio of successful projects that showcase
                     our expertise and commitment to excellence.</p>
             </div>
@@ -10,7 +17,7 @@
             <!-- Responsive Project Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 <div v-for="(project, index) in projects" :key="index"
-                    class="group flex flex-col rounded-2xl overflow-hidden bg-slate-900 ring-1 ring-white/5 shadow-lg
+                    class="group flex h-full flex-col rounded-2xl overflow-hidden bg-slate-900 ring-1 ring-white/5 shadow-lg
                            transition-all duration-300 hover:ring-primary/60 hover:shadow-[0_0_30px_-6px_rgba(0,220,130,0.45)] hover:-translate-y-1.5"
                     v-motion :initial="{ opacity: 0, y: 30 }" :visible-once="{
                         opacity: 1,
@@ -18,27 +25,33 @@
                         transition: { delay: (index % 3) * 120, duration: 600 }
                     }">
 
-                    <!-- Full image (no crop) -->
+                    <!-- Uniform thumbnail: every card gets the same 16:10 box.
+                         The image is contained (never cropped); a blurred copy of it
+                         fills the leftover space so the box reads as full, not letterboxed. -->
                     <button type="button" @click="openLightbox(index)"
-                        class="block w-full bg-slate-800/40 p-3 cursor-zoom-in">
+                        class="relative block aspect-[16/10] w-full shrink-0 overflow-hidden bg-slate-800/40 cursor-zoom-in">
+                        <img :src="project.image" alt="" aria-hidden="true" loading="lazy"
+                            class="absolute inset-0 h-full w-full scale-110 object-cover blur-xl opacity-40" />
                         <img :src="project.image" :alt="project.title" loading="lazy"
-                            class="w-full h-auto object-contain rounded-lg transition-transform duration-500 group-hover:scale-[1.02]" />
+                            class="absolute inset-0 h-full w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]" />
                     </button>
 
                     <!-- Info panel -->
-                    <div class="flex flex-col flex-1 p-6 pt-3">
+                    <div class="flex flex-col flex-1 p-6">
                         <span
                             class="self-start inline-block px-3 py-1 text-xs font-medium bg-primary/20 text-primary rounded-full mb-3">
                             {{ project.category }}
                         </span>
-                        <h3 class="text-lg font-semibold text-white">{{ project.title }}</h3>
-                        <p class="text-sm text-gray-400 mt-2 flex-1">{{ project.description }}</p>
-                        <a v-if="project.link" :href="project.link" target="_blank" rel="noopener"
-                            class="self-start mt-4 inline-flex items-center gap-1 px-4 py-2 text-sm font-medium
-                                   bg-primary text-gray-900 rounded-md hover:bg-primary-400 transition">
-                            Visit Website
-                            <Icon name="ph:arrow-up-right" class="size-4" />
-                        </a>
+                        <h3 class="text-lg font-semibold text-white line-clamp-1">{{ project.title }}</h3>
+                        <p class="text-sm text-gray-400 mt-2 line-clamp-3 min-h-[3.75rem]">{{ project.description }}</p>
+                        <div class="mt-auto flex h-10 items-end pt-4">
+                            <a v-if="project.link" :href="project.link" target="_blank" rel="noopener"
+                                class="inline-flex items-center gap-1 px-4 py-2 text-sm font-medium
+                                       bg-primary text-gray-900 rounded-md hover:bg-primary-400 transition">
+                                Visit Website
+                                <Icon name="ph:arrow-up-right" class="size-4" />
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

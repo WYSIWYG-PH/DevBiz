@@ -1,59 +1,63 @@
 <template>
-    <nav class="fixed top-0 left-0 right-0 z-50 w-full py-4 bg-slate-950 md:bg-transparent">
+    <nav class="fixed top-0 left-0 right-0 z-50 w-full py-4">
         <div class="container mx-auto px-6">
 
-            <!-- Desktop Menu -->
-            <div class="hidden md:grid grid-cols-3 items-center">
-                <div
-                    class="logo-text text-2xl font-bold bg-gradient-to-r from-[#00DC82] to-emerald-400 bg-clip-text text-transparent">
-                    DevBiz
-                </div>
+            <!-- Desktop: one floating pill holding the logo, the links and the CTA -->
+            <div class="hidden md:flex justify-center">
+                <div class="flex items-center gap-2 rounded-full border px-2 py-2 transition-all duration-300"
+                    :class="scrolled
+                        ? 'border-slate-700 bg-slate-950/90 shadow-lg shadow-black/40 backdrop-blur-xl'
+                        : 'border-slate-800 bg-slate-900/80 backdrop-blur-md'">
 
-                <div
-                    class="flex gap-2 items-center justify-center bg-slate-900/80 backdrop-blur-md rounded-full px-2 py-2 border border-slate-800">
-                    <button @click="scrollToSection('services')" class="nav-item">Services</button>
-                    <button @click="scrollToSection('projects')" class="nav-item">Projects</button>
-                    <button @click="scrollToSection('testimonials')" class="nav-item">Testimonials</button>
-                    <button @click="scrollToSection('team')" class="nav-item">Our Team</button>
+                    <button @click="scrollToSection('hero')"
+                        class="logo-text ml-2 mr-3 bg-gradient-to-r from-[#00DC82] to-emerald-400 bg-clip-text text-xl font-bold text-transparent transition-opacity duration-200 hover:opacity-80">
+                        DevBiz
+                    </button>
+
+                    <span class="mr-1 h-5 w-px bg-slate-700" aria-hidden="true" />
+
+                    <button v-for="link in links" :key="link.id" @click="scrollToSection(link.id)" class="nav-item">
+                        {{ link.label }}
+                    </button>
+
+                    <button @click="contactOpen = true"
+                        class="ml-2 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-slate-950 transition-all duration-200 hover:bg-primary-400 active:scale-95">
+                        Get in touch
+                    </button>
                 </div>
             </div>
 
-            <!-- Mobile Menu -->
-            <div class="flex justify-between items-center md:hidden">
-                <div
-                    class="logo-text text-xl font-bold bg-gradient-to-r from-[#00DC82] to-emerald-400 bg-clip-text text-transparent">
-                    DevBiz
+            <!-- Mobile: logo + burger, in a matching pill -->
+            <div class="md:hidden">
+                <div class="flex items-center justify-between rounded-full border border-slate-800 bg-slate-950/90 py-2 pl-5 pr-2 backdrop-blur-md">
+                    <button @click="scrollToSection('hero')"
+                        class="logo-text bg-gradient-to-r from-[#00DC82] to-emerald-400 bg-clip-text text-lg font-bold text-transparent">
+                        DevBiz
+                    </button>
+                    <button @click="toggleMenu" aria-label="Toggle menu" :aria-expanded="isOpen"
+                        class="flex size-10 items-center justify-center rounded-full border border-slate-800 bg-slate-900/80 text-white transition-all duration-200 hover:border-primary/50 hover:text-primary active:scale-95">
+                        <Icon :name="isOpen ? 'ph-x-bold' : 'ph-list-bold'" class="size-5" />
+                    </button>
                 </div>
-                <button @click="toggleMenu" aria-label="Toggle menu" :aria-expanded="isOpen"
-                    class="flex items-center justify-center size-10 rounded-lg bg-slate-900/80 border border-slate-800 text-white transition-all duration-200 hover:border-primary/50 hover:text-primary active:scale-95">
-                    <Icon :name="isOpen ? 'ph-x-bold' : 'ph-list-bold'" class="size-5" />
-                </button>
-            </div>
 
-            <!-- Mobile Dropdown Menu -->
-            <transition name="slide-fade">
-                <div v-if="isOpen"
-                    class="mt-3 md:hidden overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/95 backdrop-blur-md shadow-xl shadow-black/40">
-                    <nav class="flex flex-col p-2">
-                        <button @click="handleMobileClick('services')" class="mobile-link">
-                            <span>Services</span>
-                            <Icon name="ph:caret-right" class="size-4 text-primary/70" />
-                        </button>
-                        <button @click="handleMobileClick('projects')" class="mobile-link">
-                            <span>Projects</span>
-                            <Icon name="ph:caret-right" class="size-4 text-primary/70" />
-                        </button>
-                        <button @click="handleMobileClick('testimonials')" class="mobile-link">
-                            <span>Testimonials</span>
-                            <Icon name="ph:caret-right" class="size-4 text-primary/70" />
-                        </button>
-                        <button @click="handleMobileClick('team')" class="mobile-link">
-                            <span>Our Team</span>
-                            <Icon name="ph:caret-right" class="size-4 text-primary/70" />
-                        </button>
-                    </nav>
-                </div>
-            </transition>
+                <!-- Mobile Dropdown Menu -->
+                <transition name="slide-fade">
+                    <div v-if="isOpen"
+                        class="mt-3 overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/95 shadow-xl shadow-black/40 backdrop-blur-md">
+                        <nav class="flex flex-col p-2">
+                            <button v-for="link in links" :key="link.id" @click="handleMobileClick(link.id)"
+                                class="mobile-link">
+                                <span>{{ link.label }}</span>
+                                <Icon name="ph:caret-right" class="size-4 text-primary/70" />
+                            </button>
+                            <button @click="openContactFromMobile"
+                                class="mt-1 rounded-xl bg-primary px-4 py-3 text-base font-semibold text-slate-950">
+                                Get in touch
+                            </button>
+                        </nav>
+                    </div>
+                </transition>
+            </div>
 
         </div>
     </nav>
@@ -61,17 +65,49 @@
 
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
+
+const links = [
+    { id: 'services', label: 'Services' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'testimonials', label: 'Testimonials' },
+    { id: 'team', label: 'Our Team' },
+]
 
 const isOpen = ref(false)
+const scrolled = ref(false)
+const contactOpen = useContactModal()
+
+// Dismiss the mobile menu before the modal takes over the screen.
+const openContactFromMobile = () => {
+    isOpen.value = false
+    contactOpen.value = true
+}
 
 const toggleMenu = () => {
     isOpen.value = !isOpen.value
 }
 
+const onScroll = () => {
+    scrolled.value = window.scrollY > 40
+}
+
+onMounted(() => {
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+})
+onUnmounted(() => window.removeEventListener('scroll', onScroll))
+
 const scrollToSection = (id) => {
     const el = document.getElementById(id)
-    if (el) {
+    if (!el) return
+
+    // Hand the jump to Lenis when it's running, otherwise its animation loop
+    // fights the browser's native smooth scroll and the page stutters.
+    const { $lenis } = useNuxtApp()
+    if ($lenis) {
+        $lenis.scrollTo(el, { offset: -80 })
+    } else {
         el.scrollIntoView({ behavior: 'smooth', block: 'start' })
     }
 }
@@ -91,7 +127,7 @@ const handleMobileClick = (id) => {
 }
 
 .nav-item {
-    @apply px-5 py-2 text-sm font-medium text-white relative overflow-hidden transition-all duration-200;
+    @apply relative overflow-hidden px-4 py-2 text-sm font-medium text-white transition-all duration-200;
 }
 
 /* Hidden line initially */
