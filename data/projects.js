@@ -10,7 +10,7 @@ const projects = [
   {
     title: "Goodstart International",
     description:
-      "A landing page for an outdoor and hiking gear rental business based in Davao.",
+      "A landing page website study-abroad consultancy business based in Davao City.",
     image: "/images/projects/goodstart.png",
     category: "Web Development",
     link: "https://goodstartinternational.netlify.app/",
