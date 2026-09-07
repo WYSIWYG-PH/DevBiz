@@ -31,4 +31,7 @@
     </div>
 
     <Footer />
+
+    <!-- Single shared instance, opened from the hero and the navbar CTA -->
+    <ContactModal />
 </template>

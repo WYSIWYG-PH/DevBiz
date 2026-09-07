@@ -11,7 +11,7 @@
             </div>
 
             <div class="mt-16 sm:mt-20 lg:mt-24">
-                <a v-for="(service, index) in services" :key="index" href="#contact"
+                <a v-for="(service, index) in services" :key="index" href="#process"
                     class="service-row group relative grid grid-cols-[3rem_minmax(0,1fr)] items-start gap-x-5 gap-y-4 border-t border-white/10 py-10 last:border-b lg:grid-cols-[5rem_3.5rem_minmax(0,1.1fr)_minmax(0,1fr)] lg:items-center lg:gap-x-10 lg:py-12"
                     v-motion :initial="{ opacity: 0, y: 40 }" :visible="{
                         opacity: 1,
