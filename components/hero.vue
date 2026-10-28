@@ -38,7 +38,7 @@
                     We partner with ambitious businesses to build websites, mobile apps, and software that drive
                     success.
                 </p>
-                <div class="flex justify-center space-x-4" v-motion :initial="{ opacity: 0, y: 20 }" :enter="{
+                <div class="flex w-full max-w-xs flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:justify-center sm:gap-4" v-motion :initial="{ opacity: 0, y: 20 }" :enter="{
                     opacity: 1,
                     y: 0,
                     transition: {
@@ -47,14 +47,14 @@
                     }
                 }">
                     <button
-                        class="group inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary to-emerald-400 px-7 py-3.5 font-semibold text-gray-900 shadow-lg shadow-primary/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_25px_4px_rgba(0,220,130,0.55)] active:translate-y-0"
+                        class="group inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full bg-gradient-to-r from-primary to-emerald-400 px-7 py-3.5 font-semibold text-gray-900 shadow-lg shadow-primary/30 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_25px_4px_rgba(0,220,130,0.55)] active:translate-y-0 sm:w-auto"
                         onclick="window.location.href='https://www.facebook.com/profile.php?id=61586726650291'">
-                        <Icon name="mdi:facebook" class="size-5" />
+                        <Icon name="mdi:facebook" class="size-5 shrink-0" />
                         Visit Us
                     </button>
                     <button @click="openContact = true"
-                        class="group inline-flex items-center justify-center gap-2 rounded-full border-2 border-primary/70 px-7 py-3.5 font-semibold text-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary hover:text-gray-900 active:translate-y-0">
-                        <Icon name="mdi:email-outline" class="size-5" />
+                        class="group inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full border-2 border-primary/70 px-7 py-3.5 font-semibold text-primary transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary hover:text-gray-900 active:translate-y-0 sm:w-auto">
+                        <Icon name="mdi:email-outline" class="size-5 shrink-0" />
                         Contact Us
                     </button>
                 </div>
