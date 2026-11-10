@@ -13,7 +13,7 @@ const projects = [
       "A landing page website study-abroad consultancy business based in Davao City.",
     image: "/images/projects/goodstart.png",
     category: "Web Development",
-    link: "https://goodstartinternational.netlify.app/",
+    link: "https://goodstartinternational.com/",
   },
   {
     title: "Laagan Gear Rental Davao",
@@ -92,7 +92,7 @@ const projects = [
     image: "/images/projects/urban-fragrance.jpg",
     category: "Web Development",
     link: "https://urban-fragrance.vercel.app/",
-  }
+  },
 ];
 
 export default projects;
