@@ -2,7 +2,7 @@ const projects = [
   {
     title: "Home Meals by Raf & Nika",
     description:
-      "A catering services website bringing the warmth of a home kitchen to every event.",
+      "A landing page website for a catering/restaurant business in Panabo City",
     image: "/images/projects/home-meals.png",
     category: "Web Development",
     link: "https://home-meals-catering.vercel.app/",
